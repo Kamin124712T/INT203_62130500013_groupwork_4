@@ -7,7 +7,7 @@ const app = {
                      {img:"images/Gallery4.jpg",address:"Flying pig,Italy",favorite:false,show:true}],
             search:false,
             inputSearch:'',
-            imgNotFound:false,
+            imgShow:0,
             focusImg:{show:false,index:0},
         }
     },
@@ -53,7 +53,7 @@ const app = {
                     count++
                 }
             }
-            this.imgNotFound = (count==0);     
+            this.imgShow = count;     
         }
     },
 }

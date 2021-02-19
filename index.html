@@ -25,25 +25,27 @@
     <div id="app">
         <div class="mx-auto flex flex-col justify-center mt-16" style="width: 1072px;">
             <h1 class="ml-72 text-5xl font-bold">Photo Gallery ({{countGallerys}})<span class="text-2xl"> favorite {{countfavorite}}</span></h1>
-            <i class="material-icons text-right text-5xl mr-32 mt-6 cursor-pointer " v-show="!search" @click="changSearch">search</i>
+            <i class="material-icons text-right text-5xl mr-32 mt-8 cursor-pointer mb-6 " v-show="!search" @click="changSearch">search</i>
             <div v-show="search" class="flex items-center justify-center mt-4 ">
               <input type="text" v-model="inputSearch" placeholder="Please enter text" @keyup="showGallerys" class="bg-gray-100 border-gray-300 text-gray-500  border-2 h-14 w-3/4 text-3xl pb-1 focus:ring-1 focus:ring-gray-600 focus:outline-none">
               <button class="border-2 h-14 w-24 ml-3  bg-blue-400 text-white text-2xl focus:ring-2 focus:ring-blue-600 focus:outline-none rounded-2xl" @click="changSearch" >Cancel</button>
             </div>
-            <div v-show="focusImg.show" class="w-full  bg-black mt-6 " style="height: 500px;">
+            <span v-show="!imgShow==0 && search" class="text-2xl  mx-auto text-gray-500">{{imgShow}} search results</span>
+            <div v-show="focusImg.show" class="w-full  bg-black mt-6 " style="height: 535px;">
               <i class="material-icons text-right text-5xl text-white w-full mt-2 -ml-3 cursor-pointer" @click="quit">highlight_off</i>
               <div class="flex flex-row items-center justify-center">
                 <i class="material-icons text-right text-6xl text-white cursor-pointer" @click="next(-1)">navigate_before</i>
                 <img class="mx-auto " @click="favoriteImg(focusImg.index)" :src="gallerys[focusImg.index].img " height="" width="750" >
                 <i class="material-icons text-right text-6xl text-white cursor-pointer" @click="next(1)">navigate_next</i>
               </div>
+              <div class="text-4xl font-medium mx-auto text-white mt-3  text-center">{{gallerys[focusImg.index].address}}</div>
             </div>
+            <span v-show="imgShow==0" class="text-4xl font-medium mx-auto mt-16">Image can't be found in the Gallery</span>
             <div v-for="(gallery, index) in gallerys" v-show="gallery.show" class="flex flex-row items-center mt-10 ">
               <img class="w-96 mr-10 border-4 border-blue-600 p-0.5 " :class="[index==focusImg.index && focusImg.show == true ? 'border-opacity-100' : 'border-opacity-0' ]" :src="gallery.img" @click="changfocusImg(index)" @dblclick="favoriteImg(index)">
               <span class="text-5xl font-medium cursor-pointer" @click="favoriteImg(index)">{{gallery.address}}</span>
               <i v-show="gallery.favorite" class="material-icons text-4xl mt-3 ml-10 text-red-500">favorite</i>
             </div>
-            <span v-show="imgNotFound" class="text-4xl font-medium mx-auto mt-16">Image can't be found in the Gallery</span>
         </div>
     </div>
 <script src="main.js"></script>
