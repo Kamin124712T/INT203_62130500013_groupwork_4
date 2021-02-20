@@ -33,6 +33,9 @@ const app = {
             else if(this.focusImg.index== this.gallerys.length){
                 this.focusImg.index = 0;
             }
+            if(!this.gallerys[this.focusImg.index].show){
+                this.next(i)
+            }
         },
         quit(){
             this.focusImg.show = false;
@@ -54,7 +57,7 @@ const app = {
                 }
             }
             this.imgShow = count;     
-        }
+        },
     },
 }
 
